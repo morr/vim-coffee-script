@@ -179,9 +179,30 @@ if !exists("coffee_no_trailing_semicolon_error")
   hi def link coffeeSemicolonError Error
 endif
 
+" Jasmine/mocha specs
+syn keyword specFunctions afterEach beforeEach describe it addMatchers spyOn not context before after
+syn keyword specDisabled xit xdescribe
+syn keyword specSpys andCallThrough andReturn andThrow andCallFake callCount argsForCall mostRecentCall
+syn keyword specAsync runs waits waitsFor
+syn keyword specjQuery loadFixtures readFixtures setFixtures sandbox clearCache cleanUp
+
+syn match specMatcher "\<to[A-Za-z0-9_]*\|\<should[\.A-Za-z0-9_]*"
+syn keyword specMatchers expect chai sinon spy
+"syn keyword specMatchers should equal have been
+
+hi def link specFunctions Special
+hi def link specDisabled Error
+hi def link specSpys Special
+hi def link specAsync Special
+hi def link specjQuery Special
+hi def link specTest Special
+
+hi def link specMatcher Function
+hi def link specMatchers Function
+
 " Ignore reserved words in dot accesses.
-syn match coffeeDotAccess /\.\@<!\.\s*\I\i*/he=s+1 contains=@coffeeIdentifier
-hi def link coffeeDotAccess coffeeExtendedOp
+"syn match coffeeDotAccess /\.\@<!\.\s*\I\i*/he=s+1 contains=@coffeeIdentifier
+"hi def link coffeeDotAccess coffeeExtendedOp
 
 " Ignore reserved words in prototype accesses.
 syn match coffeeProtoAccess /::\s*\I\i*/he=s+2 contains=@coffeeIdentifier
